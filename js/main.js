@@ -143,6 +143,7 @@ function onKeyDown(e) {
         let multi = Math.abs(lGrade - rGrade);
         if(multi === 0) multi = 1;
         ball.speed(1 + (1 / multi), 1 + (1 / multi));
+        isCenter = true;
         raf = window.requestAnimationFrame(onDraw);
     }
     isEnd = false;
