@@ -1,8 +1,22 @@
 
-const padWidth = 10;
-const padPadding = 5;
-const padSpeed = 5;
+// Global Settings
 
+var padWidth = 10;
+var padLength = 100;
+var padPadding = 5;
+var padColor = 'rgb(0, 128, 255)';
+var padSpeed = 5;
+var padSpeedModified = 1;
+var background = '#999';
+var textColor = 'rgba(180, 180, 180, 0.8)';
+var ballSize = 10;
+var ballColor = '#F00';
+var ballSpeedModified = 1.01;
+
+
+
+
+//Game
 let canvas;
 let ctx;
 
@@ -16,7 +30,7 @@ let raf;
 const lPad = {
     y: window.innerHeight / 2,
     speed: 0,
-    length: 100,
+    length: padLength,
     move: function () {
         this.y += padSpeed * this.speed;
         if(this.y < (this.length / 2)) {
@@ -30,7 +44,7 @@ const lPad = {
 const rPad = {
     y: window.innerHeight / 2,
     speed: 0,
-    length: 100,
+    length: padLength,
     move: function () {
         this.y += padSpeed * this.speed;
         if(this.y < (this.length / 2)) {
@@ -47,7 +61,7 @@ const ball = {
     y: window.innerHeight / 2,
     vX: 0,
     vY: 0,
-    size: 10,
+    size: ballSize,
     bounce: function(vertical) {
         if(vertical) {
             this.vY = -this.vY;
@@ -55,7 +69,7 @@ const ball = {
         else {
             this.vX = -this.vX;
             isCenter = false;
-            this.speed(1.01, 1.01);
+            this.speed(ballSpeedModified, ballSpeedModified);
         }
     },
     speed: function(speedX, speedY) {
@@ -136,17 +150,17 @@ function onKeyDown(e) {
     isEnd = false;
     //lPad
     if(e.code === 'KeyW') {
-        lPad.speed = -1;
+        lPad.speed = -padSpeedModified;
     }
     if(e.code === 'KeyS') {
-        lPad.speed = 1;
+        lPad.speed = padSpeedModified;
     }
     //rPad
     if(e.code === 'ArrowUp') {
-        rPad.speed = -1;
+        rPad.speed = -padSpeedModified;
     }
     if(e.code === 'ArrowDown') {
-        rPad.speed = 1;
+        rPad.speed = padSpeedModified;
     }
 
 }
@@ -170,24 +184,24 @@ function onDraw() {
 }
 
 function renderObj() {
-    ctx.fillStyle = '#999';
+    ctx.fillStyle = bakcground;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.font = '100px Arial';
-    ctx.fillStyle = 'rgba(180, 180, 180, 0.8)';
+    ctx.fillStyle = textColor;
     ctx.fillText(':', canvas.width / 2 - 15, canvas.height / 2 + 30);
     const lS = lGrade.toString(10);
     ctx.fillText(lS, canvas.width / 2 - 30 - getStringPos(lS), canvas.height / 2 + 40);
     const rS = rGrade.toString(10);
     ctx.fillText(rS, canvas.width / 2 - 30 + 50, canvas.height / 2 + 40);
 
-    ctx.fillStyle = 'rgb(255, 0, 0)';
+    ctx.fillStyle = ballColor;
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2, true);
     ctx.closePath();
     ctx.fill();
 
-    ctx.fillStyle = 'rgb(0, 128, 255)';
+    ctx.fillStyle = padColor;
     const lPadL = padPadding;
     const lPadT = lPad.y - (lPad.length / 2);
     ctx.fillRect(lPadL, lPadT, padWidth, lPad.length);
