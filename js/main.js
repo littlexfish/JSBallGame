@@ -32,11 +32,11 @@ const lPad = {
     speed: 0,
     move: function () {
         this.y += padSpeed * this.speed;
-        if(this.y < (this.length / 2)) {
-            this.y = (this.length / 2);
+        if(this.y < (padLength / 2)) {
+            this.y = (padLength / 2);
         }
-        if(this.y > canvas.height - (this.length / 2)) {
-            this.y = canvas.height - (this.length / 2);
+        if(this.y > canvas.height - (padLength / 2)) {
+            this.y = canvas.height - (padLength / 2);
         }
     }
 };
@@ -45,11 +45,11 @@ const rPad = {
     speed: 0,
     move: function () {
         this.y += padSpeed * this.speed;
-        if(this.y < (this.length / 2)) {
-            this.y = (this.length / 2);
+        if(this.y < (padLength / 2)) {
+            this.y = (padLength / 2);
         }
-        if(this.y > canvas.height - (this.length / 2)) {
-            this.y = canvas.height - (this.length / 2);
+        if(this.y > canvas.height - (padLength / 2)) {
+            this.y = canvas.height - (padLength / 2);
         }
     }
 };
@@ -89,14 +89,14 @@ const ball = {
             }
         }
         if (this.x <= padPadding + padWidth + this.size) { //left
-            if ((this.y > lPad.y - (lPad.length / 2)) && (this.y < lPad.y + (lPad.length / 2))) {
+            if ((this.y > lPad.y - (padLength / 2)) && (this.y < lPad.y + (padLength / 2))) {
                 if(isCenter) {
                     this.bounce(false);
                 }
             }
         }
         if (this.x >= canvas.width - (padPadding + padWidth + this.size)) { //right
-            if ((this.y > rPad.y - (rPad.length / 2)) && (this.y < rPad.y + (rPad.length / 2))) {
+            if ((this.y > rPad.y - (padLength / 2)) && (this.y < rPad.y + (padLength / 2))) {
                 if(isCenter) {
                     this.bounce(false);
                 }
@@ -201,11 +201,11 @@ function renderObj() {
 
     ctx.fillStyle = padColor;
     const lPadL = padPadding;
-    const lPadT = lPad.y - (lPad.length / 2);
+    const lPadT = lPad.y - (padLength / 2);
     ctx.fillRect(lPadL, lPadT, padWidth, padLength);
 
     const rPadL = canvas.width - padPadding - padWidth;
-    const rPadT = rPad.y - (rPad.length / 2);
+    const rPadT = rPad.y - (padLength / 2);
     ctx.fillRect(rPadL, rPadT, padWidth, padLength);
 }
 
