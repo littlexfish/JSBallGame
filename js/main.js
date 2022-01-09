@@ -30,7 +30,6 @@ let raf;
 const lPad = {
     y: window.innerHeight / 2,
     speed: 0,
-    length: padLength,
     move: function () {
         this.y += padSpeed * this.speed;
         if(this.y < (this.length / 2)) {
@@ -44,7 +43,6 @@ const lPad = {
 const rPad = {
     y: window.innerHeight / 2,
     speed: 0,
-    length: padLength,
     move: function () {
         this.y += padSpeed * this.speed;
         if(this.y < (this.length / 2)) {
@@ -204,11 +202,11 @@ function renderObj() {
     ctx.fillStyle = padColor;
     const lPadL = padPadding;
     const lPadT = lPad.y - (lPad.length / 2);
-    ctx.fillRect(lPadL, lPadT, padWidth, lPad.length);
+    ctx.fillRect(lPadL, lPadT, padWidth, padLength);
 
     const rPadL = canvas.width - padPadding - padWidth;
     const rPadT = rPad.y - (rPad.length / 2);
-    ctx.fillRect(rPadL, rPadT, padWidth, rPad.length);
+    ctx.fillRect(rPadL, rPadT, padWidth, padLength);
 }
 
 function onEnd(leftWin) {
