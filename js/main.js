@@ -126,7 +126,8 @@ function onKeyDown(e) {
     if(isEnd === true) {
         ball.vX = randomFloat() * 5;
         ball.vY = randomFloat() * 5;
-        if(ball.vX < 2) ball.vX = 3.5;
+        if(ball.vX < 2 && > 0) ball.vX = 3.5;
+        if(ball.vX > -2 && <= 0) ball.vX = -3.5;
         let multi = Math.abs(lGrade - rGrade);
         if(multi === 0) multi = 1;
         ball.speed(1 + (1 / multi), 1 + (1 / multi));
