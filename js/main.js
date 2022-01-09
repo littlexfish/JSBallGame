@@ -184,7 +184,7 @@ function onDraw() {
 }
 
 function renderObj() {
-    ctx.fillStyle = bakcground;
+    ctx.fillStyle = background;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.font = '100px Arial';
